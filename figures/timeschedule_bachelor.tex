@@ -1,0 +1,25 @@
+\renewcommand{\arraystretch}{2} % Adjust the scaling factor to change row height
+\begin{table}[h]
+\centering
+\scriptsize
+\begin{tabularx}{1.03\textwidth}{|l|*{16}{>{\centering\arraybackslash}X|}}
+\hline
+\small Work Packages & \multicolumn{16}{|c|}{\small Weeks} \\
+\hline
+ \small & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+\hline
+\small Work Package 1 & \multicolumn{2}{|c|}{\cellcolor{kitBlue1}} & & & & & & & & & & & & & & \\
+\hline
+\small Work Package 2 & & & \multicolumn{3}{|c|}{\cellcolor{kitYellow1}} & & & & & & & & & & & \\
+\hline
+\small Work Package 3 & & & & &\multicolumn{4}{|c|}{\cellcolor{kitBrown2}}& & & & & & & & \\
+\hline
+\small Buffer & & & & & & & & & & & & \multicolumn{3}{|c|}{\cellcolor{kitMayGreen1}} & & \\
+\hline
+\small Writing & & & & & & & & & & & & & \multicolumn{4}{|c|}{\cellcolor{kitGreen1}} \\
+\hline
+\small Presentations & & & & & & & & & & & & & & & & \normalsize \milestone \\
+\hline
+\end{tabularx}
+\caption{Example time schedule for bachelor thesis}
+\end{table}
