@@ -142,7 +142,7 @@ figures/timeschedule
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Frontmatter
 %% ++++++++++++++++++++++++++++++++++++++++++
-\frontmatter
+%\frontmatter
 \pagenumbering{roman}
 %% Put input here that should be inserted before the frontpage
 
@@ -154,7 +154,7 @@ figures/timeschedule
 % specifies where tex searches for your file names
 \graphicspath{{figures/}}
 %
-\mainmatter
+%\mainmatter
 \pagenumbering{arabic}
  % introduction
 \input{essentials/frontpage}
@@ -169,7 +169,8 @@ figures/timeschedule
 % only specify if sources not cited in the text are also to appear
 \nocite{*} 
 %########## different citation styles
-\bibliographystyle{alpha}
+\clearpage
+\bibliographystyle{plain}
 \bibliography{literature/bibAbrv, literature/bibFull, literature/literature}
 
 \end{document}

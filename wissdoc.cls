@@ -15,7 +15,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01] % Sorry, wir brauchen LaTeX2e!
 \ProvidesClass{wissdoc}[2012/05/10 Wissenschaftliches Dokument]
-\LoadClass[a4paper,12pt,titlepage]{book} % diese Klasse basiert auf ``book''
+\LoadClass[a4paper,12pt,titlepage]{article} % diese Klasse basiert auf ``book'', well.. not anymore. lol.
 \usepackage[T1]{fontenc}      % T1-encoded fonts: auch Wörter mit Umlauten trennen
 \usepackage[utf8]{inputenc}   % Eingabe nach UTF-8
 \usepackage[english]{babel}
@@ -105,14 +105,6 @@
   \usepackage{nohyperref}
 \fi
 
-\newif\if@usehyperref
-\ifx\href\@undefined % Wenn kein hyperref Paket geladen
-\@usehyperreffalse % hyperref used
-\else
-\@usehyperreftrue % hyperref used
-\fi
-
-
 % Das float-Paket muss NACH hyperref eingebunden werden,
 % sonst klappt die PDF-Ausgabe nicht:
 %\usepackage{float} %z.B. \floatstyle{ruled}
@@ -137,11 +129,7 @@
 %% Seitenzahl normal, Text in slanted und nicht in Grossbuchstaben
 %%
 \pagestyle{fancy}
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
-\fancyhf{} % clear all header and footer fields
-\fancyhead[LE,RO]{{\headfont\thepage}} % left/right header for even/odd pages
-\fancyhead[LO]{\headfont\nouppercase{\rightmark}} % header for left side (odd)
-\fancyhead[RE]{\headfont\nouppercase{\leftmark}} % right header for even pages
+%\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\headrulewidth}{0.5pt} % head rule
 \renewcommand{\footrulewidth}{0pt} % no rule
 % plainstyle
@@ -176,11 +164,6 @@
 %\floatstyle{ruled}
 %\restylefloat{figure}
 %\restylefloat{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Stil der Ueberschriften
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\chaptername}{}
 
 \renewcommand{\section}{%
 \@startsection{section}%
@@ -222,47 +205,6 @@
 \newlength{\chapnolen}
 \newlength{\chapparlen}
 \newsavebox{\chapno}
-%% Kein ``Kapitel'' bei Kapitelüberschrift
-% \renewcommand{\@chapapp}{} allein reicht nicht!
-%% \chapter{...}
-\renewcommand{\@makechapterhead}[1]{%
-  \vspace*{0.2\textheight}%
-  %\hrule
-  \vskip 15\p@
-  {\parindent \z@ \raggedright \normalfont
-    \ifnum \c@secnumdepth >\m@ne
-      \if@mainmatter
-        \savebox{\chapno}{\chapterheadfont\huge\bfseries \thechapter.}
-        \settowidth{\chapnolen}{\usebox{\chapno}}
-        \parbox[t]{\chapnolen}{\usebox{\chapno}}\nobreak\leavevmode
-%        \par\nobreak
-%        \vskip 20\p@
-      \fi
-    \fi
-    \interlinepenalty\@MM
-    \setlength{\chapparlen}{\textwidth}
-    \addtolength{\chapparlen}{-1.0\chapnolen}
-    \addtolength{\chapparlen}{-2ex}
-    \leavevmode\nobreak
-    \parbox[t]{\chapparlen}{\raggedright\chapterheadfont\huge \bfseries #1\par\nobreak}
-    %\the\textwidth
-    %\the\chapparlen
-    %\the\chapnolen
-    %\vskip 20\p@
-    %\rule{\textwidth}{1pt}
-    \vskip 40\p@
-  }}
-
-%% \chapter*{...}
-\renewcommand{\@makeschapterhead}[1]{%
-  \vspace*{50\p@}%
-  {\parindent \z@ \raggedright
-    \normalfont
-    \interlinepenalty\@M
-    \chapterheadfont \huge \bfseries  #1\par\nobreak
-    \vskip 40\p@
-  }%
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Inhaltsverzeichnis (auch andere Fontfamilie)
@@ -277,20 +219,6 @@
 \def\titlefoot#1{\def\@titlefoot{#1}}
 \def\@titlehead{}
 \def\@titlefoot{}
-
-\def\ps@title{%
-\headheight 15mm
-\footskip   0cm
-\addtolength{\textheight}{-15mm}
-\let\@mkboth\@gobbletwo%
-  \def\@oddhead{\vbox{\hbox to\textwidth{\@titlehead}
-                \vskip 1.5mm
-                \hbox to\textwidth{\hrulefill}}}
-  \def\@oddfoot{\vbox{\vskip -1mm\hbox to\textwidth{\hrulefill}\vskip 1mm
-                \hbox to\textwidth{\@titlefoot}}}
-  \let\@evenhead\@oddhead
-  \let\@evenfoot\@oddfoot
-}
 
 \renewenvironment{titlepage}
 {%
@@ -317,11 +245,6 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\bibname}{Literatur}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Stil Index-Seite
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewenvironment{theindex}
@@ -344,8 +267,5 @@
  \def\,{\relax\ifmmode\mskip\thinmuskip
               \else\hskip0.2em\ignorespaces\fi}%
  \raggedright}
-
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{satz}{Satz}[chapter]
 
 %% **** END OF CLASS ****
